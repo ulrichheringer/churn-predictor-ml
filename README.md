@@ -1,12 +1,12 @@
 # churn-predictor-ml
 
-Prevê churn SaaS com dados sintéticos de uso, suporte, tempo de conta e plano, usando regressão logística.
+Estimates SaaS account churn from usage, support, account age, and plan features with logistic regression.
 
-## Dados
+## Data
 
-O pipeline gera dados sintéticos determinísticos localmente, identificados como sintéticos em `pipeline.py`. Nenhum dado privado ou download externo é necessário. A divisão e a semente de avaliação são descritas junto às métricas abaixo.
+Deterministic synthetic data is generated locally in `pipeline.py`. No private data or external download is required.
 
-## Instalação e execução
+## Install and run
 
 ```bash
 python -m venv .venv
@@ -18,8 +18,10 @@ python cli.py train --model model.joblib
 python cli.py predict --model model.joblib
 ```
 
-## Métricas obtidas
+## Evaluation results
 
-Seed 42: holdout estratificado de 450 contas — acurácia **0,6711**, precisão **0,2515**, recall **0,6462**, F1 **0,3621**, ROC AUC **0,7516**. O peso balanceado favorece recall e produz falsos positivos; a regra sintética de churn não representa cancelamentos reais.
+With seed 42, a stratified holdout of 450 accounts reached 0.6711 accuracy, 0.2515 precision, 0.6462 recall, 0.3621 F1, and 0.7516 ROC AUC. Class weighting favors recall and leads to false positives. The synthetic churn rule does not represent real cancellations.
 
-Limitação: dados e regras de geração simplificados; antes de uso real, substitua-os por dados com licença e proveniência adequadas e valide fora da amostra.
+## Limitations
+
+These scores come from artificial account data. A useful churn model would need a clearly defined churn window, real account history, and validation that respects time.
